@@ -1,0 +1,82 @@
+#Задание 1 
+
+def describe_number(number):
+    if number == 0:
+        return "нулевое число"
+    elif number > 0:
+        if number % 2 == 0:
+            return "положительное четное число"
+        else:
+            return "положительное нечетное число"
+    else:
+        if number % 2 == 0:
+            return "отрицательное четное число"
+        else:
+            return "отрицательное нечетное число"
+
+try:
+    user_input = int(input("Введите целое число: "))
+    description = describe_number(user_input)
+    print(description)
+except ValueError:
+    print("Введено некорректное значение. Пожалуйста, введите целое число.")
+
+#Задание 2
+
+def count_vowels_consonants(word):
+    vowels = "aeiou"
+    vowel_counts = {vowel: 0 for vowel in vowels}
+    consonant_count = 0
+
+    for char in word:
+        if char in vowels:
+            vowel_counts[char] += 1
+        else:
+            consonant_count += 1
+
+    # Проверяем, есть ли все гласные буквы
+    all_vowels_present = all(count > 0 for count in vowel_counts.values())
+
+    # Печатаем количество каждой гласной буквы
+    for vowel, count in vowel_counts.items():
+        print(f"{vowel}: {count}")
+
+    print("Гласных букв:", sum(vowel_counts.values()))
+    print("Согласных букв:", consonant_count)
+
+    return all_vowels_present
+
+# Получаем слово от пользователя
+word = input("Введите слово: ").strip().lower()
+
+# Проверяем и выводим результат
+result = count_vowels_consonants(word)
+if not result:
+    print(False)
+
+#Задание 3
+
+def investment_decision(X, A, B):
+    if A >= X and B >= X:
+        return 2  # Оба могут вложиться
+    elif A >= X:
+        return "Mike"  # Только Майкл может вложиться
+    elif B >= X:
+        return "Ivan"  # Только Иван может вложиться
+    elif A + B >= X:
+        return 1  # Вместе могут вложиться
+    else:
+        return 0  # Никто не может вложиться
+
+# Получаем вводимые значения
+X = int(input("Введите минимальную сумму инвестиций X: "))
+A = int(input("Введите количество долларов у Майкла A: "))
+B = int(input("Введите количество долларов у Ивана B: "))
+
+# Определяем результат
+result = investment_decision(X, A, B)
+
+# Выводим результат
+print(result)
+
+
