@@ -1,0 +1,54 @@
+#Задание 1
+
+def calculate_area_perimeter(length, width):
+area = length * width
+perimeter = 2 * (length + width)
+return area, perimeter
+
+# Получаем вводимые значения
+try:
+length = float(input("Введите длину прямоугольника: "))
+width = float(input("Введите ширину прямоугольника: "))
+
+# Проверяем, что введенные числа положительные
+if length > 0 and width > 0:
+area, perimeter = calculate_area_perimeter(length, width)
+print(f"Площадь прямоугольника: {area}")
+print(f"Периметр прямоугольника: {perimeter}")
+else:
+print("Длина и ширина должны быть положительными числами.")
+except ValueError:
+print("Введено некорректное значение. Пожалуйста, введите числовые значения.")
+
+#Задание 2
+
+def compute_value(number):
+# Преобразуем число в строку, чтобы легко получить каждую цифру
+str_number = str(number)
+
+# Извлекаем цифры
+tens_of_thousands = int(str_number[0]) # десятки тысяч
+thousands = int(str_number[1]) # тысячи
+hundreds = int(str_number[2]) # сотни
+tens = int(str_number[3]) # десятки
+units = int(str_number[4]) # единицы
+
+# Возводим десятки в степень единиц
+step1 = tens * units
+
+# Умножаем на количество сотен
+step2 = step1 * hundreds
+
+# Вычисляем разность между десятками тысяч и тысячами
+difference = tens_of_thousands - thousands
+
+# Делим результат на разность
+result = step2 / difference
+
+return float(result)
+
+# Пример использования
+example_number = 46275
+result = compute_value(example_number)
+print(result) # Ожидается -16807.0
+
